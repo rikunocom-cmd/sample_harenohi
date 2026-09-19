@@ -15,4 +15,23 @@
 
 ## Live Demo
 
+https://rikunocom-cmd.github.io/sample_harenohi/
+[README.md](https://github.com/user-attachments/files/32409557/README.md)
+# ハレノヒ不動産（コーディング練習サイト）
+
+コーディング練習として、用意されたデザインカンプ（ワイヤーフレーム）をもとに、HTML / CSS / JavaScriptで実装したサンプルサイトです。
+架空の不動産会社のLP（ランディングページ）という設定で、実在の企業・物件情報ではありません。
+
+## 意識した点
+
+- レスポンシブ対応（ブレークポイントを揃えて、崩れないように調整）
+- アクセシビリティ（ハンバーガーメニューへのaria属性対応など）
+- 画像の軽量化（表示サイズに合わせてリサイズ・圧縮）
+
+## 使用技術
+
+- HTML / CSS / JavaScript（フレームワーク不使用）
+
+## Live Demo
+
 (公開後にURLを追記)
