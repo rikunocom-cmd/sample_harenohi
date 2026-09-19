@@ -1,0 +1,706 @@
+@charset "UTF-8";
+
+:root {
+  /* 色管理用の変数 */
+  --black-color: #1f3358;
+  --white-color: #fbf7ee;
+  --gray-color: #5b6478;
+  --accent-color: #e8a23a;
+}
+
+:root {
+  /* コンテンツ幅管理用の変数 */
+  --content-narrow: 1100px;
+  --content-wide: 720px;
+}
+
+:root {
+  /* z-index管理用の変数 */
+  --z-index-back: -1;
+  --z-index-default: 1;
+  --z-index-header: 100;
+  --z-index-menu: 150;
+  --z-index-modal: 200;
+}
+
+:root {
+  /* 左右の余白の変数 */
+  --gutter: clamp(20px, 5vw, 72px);
+}
+
+/* ---------- base ---------- */
+
+body {
+  background: var(--white-color);
+  color: var(--gray-color);
+  font-size: 16px;
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.1em;
+}
+
+body.fixed {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* クリックした際の青い枠線を削除 */
+*:focus {
+  outline: none;
+}
+
+/* タップした際の青い四角を削除 */
+button,
+span {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.l_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px var(--gutter);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--white-color);
+  border-bottom: 1px solid #e3d9c4;
+  z-index: var(--z-index-header);
+}
+
+.l_logo {
+  font-family: "Shippori Antique", sans-serif;
+  font-size: 20px;
+  color: var(--black-color);
+}
+
+.l_nav_wrap {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.l_nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100vh;
+  background: var(--black-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+}
+
+.l_nav.active {
+  transform: translateX(0);
+}
+
+@media screen and (min-width: 1100px) {
+  .l_nav {
+    height: 0;
+    width: auto;
+    transform: translateX(0);
+    background: transparent;
+    flex-direction: row-reverse;
+    position: static;
+  }
+}
+
+.l_nav-list {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 1100px) {
+  .l_nav-list {
+    flex-direction: row;
+  }
+}
+
+.l_nav-link {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  color: var(--white-color);
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1100px) {
+  .l_nav-link {
+    color: var(--black-color);
+  }
+}
+
+.top_kv-cta {
+  margin-top: 24px;
+}
+
+.c_btn {
+  font-size: 14.5px;
+  font-weight: bold;
+  color: var(--black-color);
+  padding: 8px 12px;
+  background: var(--accent-color);
+  border-radius: 45px;
+}
+
+.l_header-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media screen and (min-width: 1100px) {
+  .l_header-hamburger {
+    display: none;
+  }
+}
+
+.l_header-hamburger_bar {
+  background: var(--gray-color);
+  display: block;
+  width: 24px;
+  height: 2px;
+}
+
+.l_header-hamburger.active .l_header-hamburger_bar:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+  position: relative;
+  background: var(--white-color);
+}
+
+.l_header-hamburger.active .l_header-hamburger_bar:nth-child(2) {
+  opacity: 0;
+}
+
+.l_header-hamburger.active .l_header-hamburger_bar:nth-child(3) {
+  top: -6px;
+  transform: rotate(-45deg);
+  position: relative;
+  background: var(--white-color);
+}
+
+.m_section.__kv {
+  padding-top: 80px;
+}
+
+.m_section {
+  padding: 40px var(--gutter);
+}
+
+@media screen and (min-width: 1100px) {
+  .m_section.__kv {
+    display: flex;
+    gap: 56px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.m_sub-title {
+  font-size: 12px;
+  color: var(--accent-color);
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+}
+
+.kv_title {
+  font-size: 42px;
+  color: var(--black-color);
+  font-family: "Shippori Antique", sans-serif;
+  margin: 14px 0 18px;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.m_description {
+  font-size: 15.5px;
+  line-height: 1.9;
+  max-width: 46ch;
+}
+
+.kv_btn {
+  border: 1px solid var(--black-color);
+  background: var(--white-color);
+  color: var(--black-color);
+}
+
+.top_kv_img-wrap {
+  aspect-ratio: 4 / 3;
+  border-radius: 24px;
+  margin-top: 24px;
+}
+
+@media screen and (min-width: 1100px) {
+  .top_kv_img-wrap {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+.top_kv_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.m_section-head {
+  text-align: center;
+}
+
+.m_title {
+  font-size: 30px;
+  color: var(--black-color);
+  font-family: "Shippori Antique", sans-serif;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.__feature {
+  background: #f1eadc;
+}
+
+.chosen_card_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 40px auto 0;
+  max-width: var(--content-narrow);
+}
+
+@media screen and (min-width: 1100px) {
+  .chosen_card_wrap {
+    flex-direction: row;
+  }
+}
+
+.chosen_card {
+  background: #fff;
+  border: 1px solid #e3d9c4;
+  border-radius: 10px;
+  padding: 26px 22px;
+}
+
+.chosen_card_img {
+  width: 38px;
+  height: 38px;
+}
+
+.chosen_card_title {
+  font-size: 15.5px;
+  color: var(--black-color);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.chosen_card_text {
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.__search {
+  background: var(--black-color);
+}
+
+.__search .__color {
+  color: var(--white-color);
+}
+
+.search_form {
+  background: #fff;
+  border-radius: 10px;
+  padding: 28px;
+  display: flex;
+  gap: 28px;
+  margin: 44px auto 0;
+  justify-content: space-between;
+  flex-direction: column;
+  max-width: var(--content-narrow);
+}
+
+@media screen and (min-width: 1100px) {
+  .search_form {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.search_form-group {
+  display: grid;
+  gap: 7px;
+}
+
+.search_form label {
+  font-size: 11.5px;
+  color: var(--black-color);
+  font-weight: bold;
+}
+
+.search_form select {
+  border: 1px solid #e3d9c4;
+  border-radius: 10px;
+  padding: 12px 11px;
+  color: var(--black-color);
+}
+
+.recommend_card_wrap {
+  display: grid;
+  gap: 28px;
+  margin: 44px auto 0;
+  align-items: center;
+}
+
+@media screen and (min-width: 1100px) {
+  .recommend_card_wrap {
+    max-width: var(--content-narrow);
+    grid-auto-flow: column;
+  }
+}
+
+.recommend_card {
+  background: #fff;
+  border-radius: 10px;
+}
+
+.recommend_img_wrap {
+  aspect-ratio: 4 / 3;
+}
+
+.recommend_card_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.recommend_txt_wrap {
+  padding: 18px;
+}
+
+.card_title {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.card_price {
+  font-size: 19px;
+  font-weight: bold;
+  color: var(--accent-color);
+  font-family: "Zen Kaku Gothic New", sans-serif;
+}
+
+.card_details {
+  display: flex;
+  gap: 6px;
+  font-size: 12px;
+  padding-top: 6px;
+  border-top: 1px solid #e3d9c4;
+}
+
+.__achievement {
+  background: var(--black-color);
+}
+
+.achievement_list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media screen and (min-width: 1100px) {
+  .achievement_list {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: column;
+    max-width: var(--content-narrow);
+  }
+}
+
+.achievement_list-value {
+  font-size: 42px;
+  color: var(--accent-color);
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+}
+
+.achievement_list-item {
+  text-align: center;
+}
+
+.achievement_list-value span {
+  font-size: 0.5em;
+}
+
+.achievement_list-text {
+  font-size: 12.5px;
+  color: var(--white-color);
+}
+
+.voice_card_wrap {
+  display: grid;
+  gap: 28px;
+  margin: 44px auto 0;
+  max-width: var(--content-narrow);
+}
+
+@media screen and (min-width: 1100px) {
+  .voice_card_wrap {
+    grid-auto-flow: column;
+  }
+}
+
+.voice_card {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e3d9c4;
+  padding: 26px;
+}
+
+.voice_card-text {
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--black-color);
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e3d9c4;
+}
+
+.voice_card-name {
+  font-size: 13.5px;
+  font-weight: bold;
+  line-height: 1.9;
+  color: var(--black-color);
+  padding-top: 16px;
+}
+
+.__flow {
+  background: #f1eadc;
+}
+
+.flow_step_wrap {
+  display: grid;
+  gap: 16px;
+  margin: 44px auto 0;
+}
+
+@media screen and (min-width: 1100px) {
+  .flow_step_wrap {
+    grid-auto-flow: column;
+    text-align: center;
+  }
+}
+
+.flow_step_num {
+  font-size: 12.5px;
+  padding-bottom: 4px;
+}
+
+.flow_step_ttl {
+  font-size: 15px;
+  font-family: "Shippori Antique", sans-serif;
+  color: var(--black-color);
+  padding-bottom: 4px;
+  font-weight: bold;
+}
+
+.flow_step_txt {
+  font-size: 12.5px;
+}
+
+.faq_card_wrap {
+  margin: 44px auto 0;
+  max-width: var(--content-wide);
+}
+
+.faq_card {
+  padding: 20px 4px;
+}
+
+.faq_card:not(:first-child) {
+  border-top: 1px solid #e3d9c4;
+}
+
+.faq_q::before {
+  content: "Q";
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  color: var(--accent-color);
+  font-size: 14.5px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.faq_q {
+  font-size: 14.5px;
+  font-weight: bold;
+  color: var(--black-color);
+}
+
+.faq_a {
+  font-size: 13px;
+}
+
+.company_table {
+  margin: 44px auto 0;
+  max-width: var(--content-wide);
+  border-collapse: collapse;
+}
+
+.company_table-row:not(:first-child) {
+  border-top: 1px solid #e3d9c4;
+}
+
+.company_table-th,
+.company_table-td {
+  text-align: left;
+  vertical-align: top;
+  padding: 14px 10px;
+}
+
+.company_table-th {
+  font-size: 12px;
+  font-weight: bold;
+  width: 170px;
+}
+
+@media screen and (min-width: 1100px) {
+  .company_table-th {
+    font-size: 14px;
+  }
+}
+
+.company_table-td {
+  color: var(--black-color);
+}
+@media screen and (min-width: 1100px) {
+  .company_table-td {
+    font-size: 18px;
+  }
+}
+
+.m_section.__access {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+}
+
+.m_wrap.__map {
+  display: grid;
+  gap: 20px;
+}
+
+@media screen and (min-width: 1100px) {
+  .m_wrap.__map {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+}
+
+.access_txt_wrap .m_section-head {
+  text-align: left;
+}
+
+.access_info {
+  font-size: 13.5px;
+  margin-top: 14px;
+}
+
+@media screen and (min-width: 1100px) {
+  .access_map {
+    width: 500px;
+    height: 300px;
+  }
+}
+
+.access_map iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.m_section.__contact {
+  background: #f1eadc;
+}
+
+.contact_form {
+  margin: 44px auto 0;
+  display: grid;
+  gap: 18px;
+  max-width: var(--content-wide);
+}
+
+.form_group {
+  display: grid;
+  gap: 4px;
+}
+
+.form_label {
+  font-size: 11.5px;
+  font-weight: bold;
+  color: var(--black-color);
+}
+
+.form_input {
+  font-size: 13.5px;
+  background: #fff;
+  border: 1px solid #e3d9c4;
+  border-radius: 10px;
+  padding: 11px;
+}
+
+.l_footer {
+  background: var(--black-color);
+  color: var(--white-color);
+  padding: 48px var(--gutter) 26px;
+}
+
+.l_footer_txt {
+  border-bottom: 1px solid #e3d9c4;
+}
+
+@media screen and (min-width: 1100px) {
+  .l_footer_txt {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.l_footer_logo {
+  font-size: 20px;
+  font-family: "Shippori Antique", sans-serif;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1100px) {
+  .l_footer_logo {
+    font-size: 30px;
+  }
+}
+
+.l_footer_nav {
+  margin: 20px 0;
+  padding-bottom: 26px;
+}
+
+.l_footer_nav-list {
+  display: flex;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1100px) {
+  .l_footer_nav-list {
+    font-size: 16px;
+  }
+}
+
+.l_footer_copyright {
+  font-size: 11.5px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
